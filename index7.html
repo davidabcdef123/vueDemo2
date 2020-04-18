@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+<!--事件的操作-->
+<div id="app">
+    <button @click="counter+=1">数值 {{counter}}</button>
+    <button @click="greet('abc',$event)">greet</button>
+    <button @dblclick="dbgreet('abc',$event)">dbgreet</button>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            name: 'vue'
+        },
+        methods:{
+            greet: function (str,event) {
+                alert(str);
+                console.log(event);
+            },
+            dbgreet: function (str,event) {
+                alert(str);
+                console.log(event);
+            }
+        }
+    });
+</script>
+</body>
+</html>

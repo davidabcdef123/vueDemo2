@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" charset="utf-8" src="vue.js"></script>
+</head>
+<body>
+    <!-- v-once只改一次 -->
+    <div id="app" v-once>
+      {{message}}  
+      <p>{{rawHtml}}</p>
+      <!-- 转义成html -->
+      <p v-html=rawHtml></p>
+      <!-- 动态改变属性 v-bing:属性  如果是多个属性语法怎么写？-->
+        <div v-bind:class="color">测试动态属性</div>
+        <p>{{number +1}}</p>
+        <p>{{ok?1:2}}</p>
+        <p>{{ttt.split('').reverse().join('')}}</p>
+        <p v-if="see">能不能看到</p>
+        <a v-bind:href="url">跳转</a>
+
+        <!-- 指令 -->
+        <div @click="click1">
+            <!-- 会终止指令 click1不会运行 -->
+            <div @click="click2.stop">
+                click指令
+            </div>
+        </div>
+        <!-- 动态绑定对象{active:isActive,green:isGreen},也可以是数组['active','green'] ，三元表达式[isActive?'active':'',isGreen?'green':''] 可以和class并存 -->
+        <div class="test"
+            v-bind:class="['active','green']" style="width: 200px;height: 200px; text-align: center; line-height: 200px;">
+            动态class
+        </div>
+<p></p>
+        <div v-bind:style="{color:color,fontSize:size,background:isGreen?'#FF0000':''}">
+            动态style
+        </div>
+    </div>
+    <script type="text/javascript">
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                message:"1",
+                rawHtml:"<span style='color:red'> 什么颜色</span>",
+                //color:"blue",
+                color:"red",
+                number:10,
+                ok:false,
+                ttt:'1234',
+                see:false,
+                url:'http://www.baidu.com',
+                isActive:true,
+                isGreen:true,
+                color:'#FFFFFF',
+                size:'50px'
+            },
+            methods:{
+                click1:function(){
+                    alert("click1");
+                },
+                click2:function(){
+                    alert("click2");
+                }
+            }
+        });
+        vm.$data.message =2;
+        setTimeout(function(){
+            //如果做替换颜色实验去掉 v-once
+            vm.color="blue"
+        },3000);
+    </script>
+<style type="text/css">
+.red{color:red;}
+.blue{color: blue;}
+.active{background-color: red;}
+.test{font-size: 30px;}
+.green{color: green;}
+</style>
+</body>
+</html>

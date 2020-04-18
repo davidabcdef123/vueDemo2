@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        var data={msg:1};
+        var vm=new Vue({
+            el:'#app',
+            data: data
+        });
+  
+        //类似监听,只在最后一次修改的时候生效了  $调用vm对象的内置的方法
+        vm.$watch('msg',function(newVal,oldVal){
+            alert("新="+newVal+" 旧="+oldVal);
+        });
+        //一样
+        data.msg=2;
+        vm.msg=3
+        //实例属性
+        vm.$data.msg=4;
+
+    </script>
+</body>
+
+</html>

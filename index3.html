@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" charset="utf-8" src="vue.js"></script>
+</head>
+<body>
+    <!--生命周期-->
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                msg:"hi vue"
+            },
+            //在实例初始化之后，数据观测，（data observer） 和 event/watcher事件配置之前被调用
+            beforeCreate:function(){
+                alert("beforeCreate");
+            },
+            //在实例创建完成之后立即被调用，在这一步 实例已经完成以下配置，数据观察（data observer），属性和方法的运算，watch/event事件回调
+            //然后挂载阶段还没开始，$el属性不可见
+            created:function(){
+                alert("created");
+            },
+            //在挂载开始之前被调用，相关的渲染函数首次被调用
+            beforeMount:function(){
+                alert("beforeMount");
+            },
+            //el被新创建的vm.$el替换，挂载成功
+            mounted:function(){
+                alert("mounted");
+            },
+            //数据更新时调用
+            beforeUpdate:function(){
+                alert("beforeUpdate");
+            },
+            //组件dom已更新，组件更新完毕
+            updated:function(){
+                alert("updated");
+            }
+        });
+        setTimeout(function(){
+            vm.msg='替换';
+        },3000);
+    </script>
+</body>
+</html>

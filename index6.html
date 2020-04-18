@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" charset="utf-8" src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- key 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。
+                如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。
+                使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素 -->
+            <li v-for='item,index in items' :key='index'>
+                {{index}} {{item.message}}
+            </li>
+            ------------------------------------------------
+            <p></p>
+            <li v-for='value,key in object ' :key="key">
+                {{key}} :{{value}}
+            </li>
+        </ul> 
+    </div>
+    <script type="text/javascript">
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                items:[
+                    {message:'arr1'},
+                    {message:"arr2"}
+                ],
+                object:{
+                    title:'objTitle',
+                    author:'objAuthor',
+                    publisher:"objPub"
+                }
+            }
+        });
+    </script>
+</body>
+</html>
