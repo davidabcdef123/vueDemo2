@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="vue.js"></script>
 </head>
 <body>
+<div id="app">
+    <input v-model="message" placeholder="请编辑"></input>
+    <p>编辑的信息： {{message}}</p>
 
+    <textarea v-model="message2" placeholder="请编辑"></textarea>
+    <p>textarea中的信息：{{message2}}</p>
+
+    <div>
+        <input type="checkbox" id="jack" value="jack" v-model="checkedNames"><label for="jack">jack</label>
+        <input type="checkbox" id="john" value="john" v-model="checkedNames"><label for="john">john</label>
+        <input type="checkbox" id="mike" value="mike" v-model="checkedNames"><label for="mike">mike</label>
+        <br>
+        <span>选择的名字:{{checkedNames}}</span>
+    </div>
+
+    <div>
+        <input type="radio" id="one" value="one" v-model="picked"><label for="one">one</label>
+        <input type="radio" id="two" value="two" v-model="picked"><label for="two">two</label>
+        <span>pick的：{{picked}}</span>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm=new Vue({
+        el: "#app",
+        data: {
+            message: "",
+            message2:"",
+            checkedNames:[],
+            picked:""
+        }
+    });
+</script>
 </body>
 </html>
